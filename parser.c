@@ -63,7 +63,7 @@ void CreateTime(uint32_t time_stamp) {
         return;
     }
 
-    printf("TimeDateStamp: %s", time_str);  // asctime_s already adds a newline
+    printf("TimeDateStamp: %s", time_str);
 }
 
 void PECharacteristics(uint16_t characteristics) {
@@ -175,7 +175,7 @@ void ParseSectionHeaders(FILE* file, uint16_t number_of_sections, uint32_t secti
             return;
         }
 
-        char name[9] = { 0 };  // 8 characters + null terminator
+        char name[9] = { 0 }; 
         memcpy(name, section_header.Name, 8);
 
         printf("%-10s %10u %10u %10u %10u 0x%08X\n",
@@ -283,22 +283,17 @@ void AnalyzeTextSection(const uint8_t* data, size_t size, uint64_t base_address)
     printf("Size: %zu bytes\n", size);
     printf("Contains executable code\n");
 
-    // 디스어셈블리
     disassemble_text_section(data, size, base_address);
 
-    // 함수 호출 분석
     analyze_function_calls(data, size, base_address);
 
-    // 공통 코드 패턴 찾기
     find_common_patterns(data, size);
 
-    // 추가 분석 로직...
 }
 
 void AnalyzeDataSection(const uint8_t* data, size_t size) {
     printf("Analysis of .data section:\n");
     printf("  Contains initialized data\n");
-    // 데이터 패턴 분석 등을 추가할 수 있습니다.
 }
 
 void AnalyzeBssSection(const uint8_t* data, size_t size) {
@@ -310,43 +305,36 @@ void AnalyzeBssSection(const uint8_t* data, size_t size) {
 void AnalyzeRdataSection(const uint8_t* data, size_t size) {
     printf("Analysis of .rdata section:\n");
     printf("  Contains read-only data\n");
-    // 문자열, 상수 등의 분석을 추가할 수 있습니다.
 }
 
 void AnalyzeEDataSection(const uint8_t* data, size_t size) {
     printf("Analysis of .edata section:\n");
     printf("  Contains export data\n");
-    // 익스포트 함수 정보 분석을 추가할 수 있습니다.
 }
 
 void AnalyzeIdataSection(const uint8_t* data, size_t size) {
     printf("Analysis of .idata section:\n");
     printf("  Contains import data\n");
-    // 임포트 함수 정보 분석을 추가할 수 있습니다.
 }
 
 void AnalyzeRelocSection(const uint8_t* data, size_t size) {
     printf("Analysis of .reloc section:\n");
     printf("  Contains relocation information\n");
-    // 재배치 정보 분석을 추가할 수 있습니다.
 }
 
 void AnalyzeRsrcSection(const uint8_t* data, size_t size) {
     printf("Analysis of .rsrc section:\n");
     printf("  Contains resources\n");
-    // 리소스 구조 분석을 추가할 수 있습니다.
 }
 
 void AnalyzePDataSection(const uint8_t* data, size_t size) {
     printf("Analysis of .pdata section:\n");
     printf("  Contains exception handling data\n");
-    // 예외 처리 정보 분석을 추가할 수 있습니다.
 }
 
 void AnalyzeTlsSection(const uint8_t* data, size_t size) {
     printf("Analysis of .tls section:\n");
     printf("  Contains thread-local storage data\n");
-    // TLS 데이터 구조 분석을 추가할 수 있습니다.
 }
 
 void AnalyzeSection(const uint8_t* data, size_t size, const char* name, uint64_t base_address) {
@@ -386,7 +374,6 @@ void AnalyzeSection(const uint8_t* data, size_t size, const char* name, uint64_t
         printf("  Unknown section type\n");
     }
 
-    // 문자열 검색
     printf("Searching for ASCII strings...\n");
     for (size_t i = 0; i < size - 4; i++) {
         if (isprint(data[i])) {
